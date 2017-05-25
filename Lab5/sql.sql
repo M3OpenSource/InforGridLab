@@ -1,4 +1,5 @@
 DECLARE @runtime VARCHAR(1000)
+DECLARE @topology VARCHAR(1000)
 SET @runtime =
 '<?xml version="1.0" ?>
 <runtime xmlns="http://schemas.lawson.com/grid/configuration_v3">
@@ -8,9 +9,6 @@ SET @runtime =
     <contextRoots />
     <propertySettings />
 </runtime>'
-UPDATE GRIDCONF SET DATA=CONVERT(varbinary(max), @runtime) WHERE TYPE='runtime'
-
-DECLARE @topology VARCHAR(1000)
 SET @topology =
 '<?xml version="1.0" ?>
 <topology xmlns="http://schemas.lawson.com/grid/configuration_v3">
@@ -20,9 +18,6 @@ SET @topology =
     <registry host="localhost" port="50004" />
 	<administrativeRouter host="localhost" port="50005" webStartPort="50006" httpsPort="50007" />
 </topology>'
-UPDATE GRIDCONF SET DATA=CONVERT(varbinary(max), @topology) WHERE TYPE='topology'
-
-
 DELETE FROM GRIDCONF
 INSERT INTO GRIDCONF (GRID, TYPE, NAME, TS, DATA, SEQID) VALUES ('Grid', 'runtime' , 'null', 0, CONVERT(varbinary(max), @runtime), 0)
 INSERT INTO GRIDCONF (GRID, TYPE, NAME, TS, DATA, SEQID) VALUES ('Grid', 'topology' , 'null', 0, CONVERT(varbinary(max), @topology), 0)
