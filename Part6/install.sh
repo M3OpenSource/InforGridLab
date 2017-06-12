@@ -3,12 +3,16 @@
 # Install the Infor ION Grid on Ubuntu and PostgreSQL
 # https://m3ideas.org/2017/06/11/building-an-infor-grid-lab-part-6/
 
-# Pre-requisites: download the Grid installer, extract the files, and set this environment variable accordingly (no trailing slash)
+# Usage
 export INSTALLER=~/Downloads/Grid_Installer_11.1.13.0.77.lcm_FILES
+if (test ! -d "$INSTALLER"); then
+	echo Usage: Download the Infor ION Grid, extract the LCM file to a temporary folder somewhere, and in this install.sh script, set the INSTALLER environment variable to that folder (no trailing slash);
+	exit;
+fi
 
 # Install PostgreSQL and verify the connection
 sudo apt-get update
-sudo apt-get install postgresql postgresql-contrib
+sudo apt-get --assume-yes install postgresql postgresql-contrib
 sudo -u postgres psql -c \\conninfo
 
 # set the PostgreSQL password
@@ -107,6 +111,9 @@ user=postgres
 encryptedPwd=cGFzc3dvcmQxMjM=
 schema=public
 " > config/jdbc.properties
+
+# Install the JDK if needed
+sudo apt-get --assume-yes install default-jdk
 
 # Create the cryptographic key material
 java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.security.Certificates -create=gridcert -gridname InforIONGrid -gridpassword password123 -gridkeystore secure
