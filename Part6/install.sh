@@ -15,7 +15,7 @@ sudo -u postgres psql -c \\conninfo
 sudo -u postgres psql -c "ALTER USER postgres with encrypted password 'password123';"
 
 # Create the Grid database and tables
-sudo -u postgres psql -c createdb InforIONGrid
+sudo -u postgres createdb InforIONGrid
 sudo -u postgres psql -d InforIONGrid -c "
 CREATE TABLE GRIDCONF (
  GRID varchar(64) NOT NULL,
@@ -40,7 +40,7 @@ INSERT INTO GRIDCONF (GRID, TYPE, NAME, TS, DATA, SEQID) VALUES ('InforIONGrid',
  </hosts>
  <registry host=\"localhost\" port=\"50004\" />
 </topology>', 0);
-CREATE TABLE grid.APPMAPPINGS (
+CREATE TABLE APPMAPPINGS (
     GRID varchar(256) NOT NULL,
     NAME varchar(256) NOT NULL,
     HOST varchar(256) NOT NULL,
@@ -52,13 +52,13 @@ CREATE TABLE grid.APPMAPPINGS (
     PROFILEDATA bytea NULL,
     JVMID varchar(64) NULL
 );
-CREATE TABLE grid.EXISTING_GRIDS (
+CREATE TABLE EXISTING_GRIDS (
     GRID_NAME varchar(64) NOT NULL,
     GRID_VERSION varchar(32) NOT NULL,
     MODIFIED_BY varchar(128) NULL,
     TIMESTAMP numeric(20, 0) NOT NULL
 );
-INSERT INTO grid.EXISTING_GRIDS (GRID_NAME, GRID_VERSION, MODIFIED_BY, TIMESTAMP) VALUES ('InforIONGrid', 1, 'Thibaud', 0);
+INSERT INTO EXISTING_GRIDS (GRID_NAME, GRID_VERSION, MODIFIED_BY, TIMESTAMP) VALUES ('InforIONGrid', 1, 'Thibaud', 0);
 "
 
 # create the Grid folder structure
