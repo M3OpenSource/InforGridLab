@@ -122,10 +122,10 @@ java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk
 
 # Optional: Import the XML configuration files, and launch the XML editor
 java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar com.lawson.grid.config.JDBCConfigAreaRuntime ~/InforIONGrid/
-java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.config.client.ui.Launch &
+java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.config.client.ui.Launch -griddir $HOME/InforIONGrid/ -ui &
 
 # Start the Grid Management Pages
-java -jar resources/grid-core.jar &
+java -jar resources/grid-core.jar localhost 50004 &
 
 # Start the Grid
 java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/javax.servlet-api.jar:resources/grid.httpclient.jar com.lawson.grid.Startup -registry -configDir . -host localhost -logLevel ALL
