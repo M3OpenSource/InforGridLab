@@ -6,7 +6,7 @@
 # Usage
 export INSTALLER=~/Downloads/Grid_Installer_11.1.13.0.77.lcm_FILES
 if (test ! -d "$INSTALLER"); then
-	echo Usage: Download the Infor ION Grid, extract the LCM file to a temporary folder somewhere, and in this install.sh script, set the INSTALLER environment variable to that folder (no trailing slash);
+	echo Usage: Download the Infor ION Grid, extract the LCM file to a temporary folder somewhere, and in this install.sh script, set the INSTALLER environment variable to that folder \(no trailing slash\);
 	exit;
 fi
 
@@ -83,7 +83,7 @@ cp $INSTALLER/products/Infor_ION_Grid_11.1.13.0/tasks/grid.liquibase.jar resourc
 cp $INSTALLER/products/Infor_ION_Grid_11.1.13.0/tasks/javax.servlet-api.jar resources/
 cp $INSTALLER/products/Infor_ION_Grid_11.1.13.0/components/postgresql-9.3-1101-jdbc41.jar drivers/
 
-# create the XML files
+# create the XML configuration files
 echo '<?xml version="1.0" ?>
 <runtime xmlns="http://schemas.lawson.com/grid/configuration_v3">
     <bindings />
@@ -120,12 +120,12 @@ java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk
 java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.security.Certificates -create=hostcert -gridname InforIONGrid -gridpassword password123 -hostname localhost -gridkeystore secure -hostkeystore secure -role grid-admin -address localhost -address ::1 -address 127.0.0.1 -address example.com -unresolved
 java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.security.Certificates -create=symkey -gridname InforIONGrid -gridkeystore secure -gridpassword password123 -symkeypath secure -hostkeystore secure -hostname localhost
 
-# Start the Grid
-java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/javax.servlet-api.jar:resources/grid.httpclient.jar com.lawson.grid.Startup -registry -configDir . -host localhost -logLevel ALL
+# Optional: Import the XML configuration files, and launch the XML editor
+java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar com.lawson.grid.config.JDBCConfigAreaRuntime ~/InforIONGrid/
+java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.config.client.ui.Launch &
 
 # Start the Grid Management Pages
-java -jar resources/grid-core.jar
+java -jar resources/grid-core.jar &
 
-# For the  Configuration Import & Edit
-java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar com.lawson.grid.config.JDBCConfigAreaRuntime ~/InforIONGrid/
-java -cp resources/grid-core.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar com.lawson.grid.config.client.ui.Launch
+# Start the Grid
+java -cp resources/grid-core.jar:resources/bcprov-jdk16.jar:resources/bcmail-jdk16.jar:resources/grid.liquibase.jar:drivers/sqljdbc42.jar:resources/javax.servlet-api.jar:resources/grid.httpclient.jar com.lawson.grid.Startup -registry -configDir . -host localhost -logLevel ALL
