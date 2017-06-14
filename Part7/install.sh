@@ -4,11 +4,12 @@
 # https://m3ideas.org/2017/06/13/building-an-infor-grid-lab-part-7/
 
 # Usage:
-# 1) Setup SSH from your computer to the droplet
-# 2) From your computer, copy the Grid installer to the droplet's ~/Downloads/
+# 1) Create a Downloads folder:
+#        ssh root@108.101.101.116 'mkdir ~/Downloads/'
+# 2) Copy the Grid installer to the droplet:
 #        scp ~/Downloads/Grid_Installer_11.1.13.0.77.lcm root@108.101.101.116:~/Downloads/
-# 3) From your computer, execute the installation script:
-#        ssh root@108.101.101.116 curl https://raw.githubusercontent.com/M3OpenSource/InforGridLab/master/Part7/install.sh | bash -s
+# 3) Download and execute the installation script:
+#        ssh root@108.101.101.116 'curl https://raw.githubusercontent.com/M3OpenSource/InforGridLab/master/Part7/install.sh | bash -s'
 # Note: change the droplet's public IP address accordingly, e.g. 108.101.101.116
 export INSTALLER=~/Downloads/Grid_Installer_11.1.13.0.77.lcm
 if (test ! -f "$INSTALLER"); then
