@@ -8,7 +8,7 @@
 #        ssh root@108.101.101.116 'mkdir ~/Downloads/'
 # 2) Copy the Grid installer to the droplet:
 #        scp ~/Downloads/Grid_Installer_11.1.13.0.77.lcm root@108.101.101.116:~/Downloads/
-# 3) Download and execute the installation script:
+# 3) Download and execute this installation script:
 #        ssh root@108.101.101.116 'curl https://raw.githubusercontent.com/M3OpenSource/InforGridLab/master/Part7/install.sh | bash -s'
 # Note: change the droplet's public IP address accordingly, e.g. 108.101.101.116
 export INSTALLER=~/Downloads/Grid_Installer_11.1.13.0.77.lcm
