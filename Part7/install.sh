@@ -3,7 +3,7 @@
 # Install the Infor ION Grid on a CentOS droplet at DigitalOcean
 # https://m3ideas.org/2017/06/13/building-an-infor-grid-lab-part-7/
 
-export INSTALLER=~/Downloads/Grid_Installer_11.1.13.0.77.lcm
+export INSTALLER=~/Downloads/installer-1.13.77.jar
 if (test ! -f "$INSTALLER"); then
 	echo -e "Missing $INSTALLER"
 	exit;
