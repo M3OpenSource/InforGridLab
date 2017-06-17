@@ -10,3 +10,5 @@ Building an Infor Grid Laboratory
 * [Building an Infor Grid Lab – Part 4bis – Console and silent install](https://m3ideas.org/2017/06/08/building-an-infor-grid-lab-part-4bis)
 * [Building an Infor Grid Lab – Part 5 – PostgreSQL database](https://m3ideas.org/2017/06/10/building-an-infor-grid-lab-part-5/)
 * [Building an Infor Grid Lab – Part 6 – Ubuntu Linux](https://m3ideas.org/2017/06/11/building-an-infor-grid-lab-part-6)
+* [Building an Infor Grid Lab – Part 6bis – CentOS Linux](https://m3ideas.org/2017/06/13/building-an-infor-grid-lab-part-6bis/)
+* [Building an Infor Grid Lab – Part 7 – Virtual Private Cloud](https://m3ideas.org/2017/06/13/building-an-infor-grid-lab-part-7/)
